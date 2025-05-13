@@ -23,18 +23,9 @@ public class BoardView : MonoBehaviour
     private GameObject playingBlockParent;
     private readonly float blockDistance = 0.79f;
 
-    public float BlockDistance => blockDistance;
     public GameObject BoardParent => boardParent;
     public GameObject PlayingBlockParent => playingBlockParent;
-    public GameObject BoardBlockPrefab => boardBlockPrefab;
-    public GameObject BlockGroupPrefab => blockGroupPrefab;
-    public GameObject BlockPrefab => blockPrefab;
-    public Material[] BlockMaterials => blockMaterials;
-    public Material[] TestBlockMaterials => testBlockMaterials;
-    public GameObject[] WallPrefabs => wallPrefabs;
     public Material[] WallMaterials => wallMaterials;
-    public Transform SpawnerTransform => spawnerTr;
-    public Transform QuadTransform => quadTr;
     public ParticleSystem DestroyParticle => destroyParticle;
 
     public void Init()
@@ -136,4 +127,5 @@ public class BoardView : MonoBehaviour
         quad.transform.position = blockDistance * pos;
         return quad;
     }
+
 }

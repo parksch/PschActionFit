@@ -235,9 +235,4 @@ public partial class BoardController
         }
         return true;
     }
-
-    public Material GetTargetMaterial(int index)
-    {
-        return view.WallMaterials[index];
-    }
 }

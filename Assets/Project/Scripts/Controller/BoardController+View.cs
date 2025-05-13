@@ -10,4 +10,9 @@ public partial class BoardController
     {
         view.Init();
     }
+
+    public Material GetTargetMaterial(int index)
+    {
+        return view.WallMaterials[index];
+    }
 }
