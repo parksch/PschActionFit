@@ -121,10 +121,14 @@ public class BoardView : MonoBehaviour
         return wall;
     }
 
-    public GameObject CreateQuad(Vector3 pos)
+    public GameObject CreateQuad(int width,int height,Vector3 pos)
     {
         GameObject quad = Instantiate(quadPrefab, quadTr);
-        quad.transform.position = blockDistance * pos;
+        Vector3 result = blockDistance * pos;
+        result.x += ((width + 1) % 2 == 0 ? blockDistance / 2f : 0);
+        result.z += ((height + 1) % 2 == 0 ? blockDistance / 2f : 0);
+        quad.transform.position = result;
+
         return quad;
     }
 

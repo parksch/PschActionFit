@@ -18,8 +18,8 @@ public partial class BoardController
 
         float xValue = BoardWidth/2;
         float zValue = BoardHeight/2;
-        GameObject quadObj = view.CreateQuad(new Vector3(xValue, yoffset, zValue));
-        quadObj.transform.localScale = new Vector3(BoardWidth + wallOffset * 2, BoardHeight + wallOffset * 2, 1);
+        GameObject quadObj = view.CreateQuad(BoardWidth, BoardHeight,new Vector3(xValue, yoffset, zValue));
+        quadObj.transform.localScale = new Vector3(BoardWidth + wallOffset * 2.5f, BoardHeight + wallOffset * 2.5f, 1);
         quads.Add(quadObj);
 
         maskObject.SetActive(true);
