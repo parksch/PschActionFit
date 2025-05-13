@@ -4,6 +4,7 @@ using UnityEngine;
 public partial class StageEditorManager : MonoBehaviour
 {
     static public StageEditorManager Instance;
+
     [SerializeField] float groundOffset;
     [SerializeField] float wallOffset;
 
@@ -13,8 +14,12 @@ public partial class StageEditorManager : MonoBehaviour
     [SerializeField] GameObject wallhPrefab;
     [SerializeField] GameObject wallvPrefab;
     [SerializeField] GameObject groundPrefab;
+
+    [SerializeField] List<Material> colors;
     [SerializeField] List<GameObject> gridObjects;
     [SerializeField] List<GameObject> wallObjects;
+
+    [SerializeField] ColorType currentColor;
 
     void Awake()
     {

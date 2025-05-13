@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public partial class StageEditorManager //UI
 {
+    [SerializeField] Text currentSelect;
     [SerializeField] InputField xInput;
     [SerializeField] InputField yInput;
     [SerializeField] InputField stageInput;
-    [SerializeField] RectTransform content;
+    [SerializeField] RectTransform jsonContent;
+    [SerializeField] RectTransform colorContent;
+    [SerializeField] List<ColorButton> colorButtons;
     [SerializeField] List<JsonLoad> loadObjects;
-    [SerializeField] JsonLoad prefab;
+    [SerializeField] ColorButton colorButtonPrefab;
+    [SerializeField] JsonLoad jsonLoadPrefab;
 
     public void InitUI()
     {
@@ -20,21 +24,44 @@ public partial class StageEditorManager //UI
         {
             if (i == 0)
             {
-                prefab.Set(jsonFiles[i]);
-                loadObjects.Add(prefab);
+                jsonLoadPrefab.Set(jsonFiles[i]);
+                loadObjects.Add(jsonLoadPrefab);
             }
             else
             {
-                JsonLoad copy = Instantiate(prefab, content);
+                JsonLoad copy = Instantiate(jsonLoadPrefab, jsonContent);
                 copy.Set(jsonFiles[i]);
                 loadObjects.Add(copy);
             }
         }
+
+        for (int i = 0;i <= (int)ColorType.Green; i++)
+        {
+            if (i == 0)
+            {
+                colorButtonPrefab.Set((ColorType)i);
+                colorButtons.Add(colorButtonPrefab);
+            }
+            else
+            {
+                ColorButton copy = Instantiate(colorButtonPrefab, colorContent);
+                copy.Set((ColorType)i);
+                colorButtons.Add(copy);
+            }
+        }
+
+        currentSelect.text = "Select : " + currentColor.ToString();
     }
 
     public void OnClickCreateButton()
     {
         CreateGrid();
+    }
+
+    public void OnClickColorButton(ColorButton colorButton)
+    {
+        currentColor = colorButton.ColorType;
+        currentSelect.text = "Select : " + currentColor.ToString();
     }
 
     public void OnClickSaveJson(JsonLoad load)
