@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Project.Scripts.Data_Script;
 
 public partial class StageEditorManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public partial class StageEditorManager : MonoBehaviour
     [SerializeField] List<GameObject> wallObjects;
 
     [SerializeField] ColorType currentColor;
+
+    public List<Material> Colors => colors;
+    public ColorType CurrentType => currentColor;
 
     void Awake()
     {
@@ -61,18 +65,20 @@ public partial class StageEditorManager : MonoBehaviour
                 {
                     if (x != -1 && x != xMax)
                     {
-                        GameObject wallh = Instantiate(wallhPrefab, wallParent);
-                        wallh.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, (yMax / 2f) + wallOffset);
-                        wallObjects.Add(wallh);
+                        TileWall wallh = Instantiate(wallhPrefab, wallParent).GetComponent<TileWall>();
+                        wallh.Set(x,y+1);
+                        wallh.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, -(yMax / 2f) - wallOffset);
+                        wallObjects.Add(wallh.gameObject);
                     }
                 }
                 else if (y == yMax)
                 {
                     if (x != -1 && x != xMax)
                     {
-                        GameObject wallh = Instantiate(wallhPrefab, wallParent);
-                        wallh.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, (yMax / 2f) - ((yMax - 1) * groundOffset) - wallOffset);
-                        wallObjects.Add(wallh);
+                        TileWall wallh = Instantiate(wallhPrefab, wallParent).GetComponent<TileWall>();
+                        wallh.Set(x, y - 1);
+                        wallh.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, -(yMax / 2f) + ((yMax - 1) * groundOffset) + wallOffset);
+                        wallObjects.Add(wallh.gameObject);
                     }
                 }
                 else
@@ -81,25 +87,28 @@ public partial class StageEditorManager : MonoBehaviour
                     {
                         if (y != -1 && y != yMax)
                         {
-                            GameObject wallv = Instantiate(wallvPrefab, wallParent);
-                            wallv.transform.position = new Vector3(-(xMax / 2f) - wallOffset,0, (yMax / 2f) - y * groundOffset);
-                            wallObjects.Add(wallv);
+                            TileWall wallv = Instantiate(wallvPrefab, wallParent).GetComponent<TileWall>();
+                            wallv.Set(x + 1, y);
+                            wallv.transform.position = new Vector3(-(xMax / 2f) - wallOffset,0, -(yMax / 2f) + y * groundOffset);
+                            wallObjects.Add(wallv.gameObject);
                         }
                     }
                     else if(x == xMax)
                     {
                         if (y != -1 && y != yMax)
                         {
-                            GameObject wallv = Instantiate(wallvPrefab, wallParent);
-                            wallv.transform.position = new Vector3(-(xMax / 2f) + (xMax - 1) * groundOffset + wallOffset, 0, (yMax / 2f) - y * groundOffset);
-                            wallObjects.Add(wallv);
+                            TileWall wallv = Instantiate(wallvPrefab, wallParent).GetComponent<TileWall>();
+                            wallv.Set(x - 1, y);
+                            wallv.transform.position = new Vector3(-(xMax / 2f) + (xMax - 1) * groundOffset + wallOffset, 0, -(yMax / 2f) + y * groundOffset);
+                            wallObjects.Add(wallv.gameObject);
                         }
                     }
                     else
                     {
-                        GameObject ground = Instantiate(groundPrefab, groundParent);
-                        ground.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, (yMax / 2f) - y * groundOffset);
-                        gridObjects.Add(ground);
+                        TileGround ground = Instantiate(groundPrefab, groundParent).GetComponent<TileGround>();
+                        ground.Set(x, y);
+                        ground.transform.position = new Vector3(-(xMax / 2f) + x * groundOffset, 0, -(yMax / 2f) + y * groundOffset);
+                        gridObjects.Add(ground.gameObject);
                     }
                 }
 
@@ -109,7 +118,30 @@ public partial class StageEditorManager : MonoBehaviour
 
     public void LoadObjects(StageJsonData stageJson)
     {
+        foreach (var item in gridObjects)
+        {
+            Destroy(item);
+        }
+        gridObjects.Clear();
 
+        foreach (var item in wallObjects)
+        {
+            Destroy(item);
+        }
+        wallObjects.Clear();
+
+        int xMax = 0;
+        int.TryParse(xInput.text, out xMax);
+        int yMax = 0;
+        int.TryParse(yInput.text, out yMax);
+
+        foreach (var item in stageJson.boardBlocks)
+        {
+            TileGround ground = Instantiate(groundPrefab, groundParent).GetComponent<TileGround>();
+            ground.Set(item.x, item.y, item.colorType);
+            ground.transform.position = new Vector3(-(xMax / 2f) + item.x * groundOffset, 0, -(yMax / 2f) + item.y * groundOffset);
+            gridObjects.Add(ground.gameObject);
+        }
     }
 }
 

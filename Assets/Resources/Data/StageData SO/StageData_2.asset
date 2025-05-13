@@ -16,84 +16,84 @@ MonoBehaviour:
   boardBlocks:
   - x: 0
     y: 0
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 1
     y: 0
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 2
     y: 0
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 3
     y: 0
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 0
     y: 1
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 1
     y: 1
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 2
     y: 1
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 3
     y: 1
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 0
     y: 2
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 1
     y: 2
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 2
     y: 2
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 3
     y: 2
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 0
     y: 3
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 1
     y: 3
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 2
     y: 3
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 3
     y: 3
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 0
     y: 4
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 1
     y: 4
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 2
     y: 4
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   - x: 3
     y: 4
-    colorType: 
-    dataType: 
+    colorType: 0
+    dataType: 0
   playingBlocks:
   - x: 0
     y: 0
@@ -154,5 +154,5 @@ MonoBehaviour:
     y: 4
     WallDirection: 1
     length: 3
-    wallColor: 2
+    wallColor: 1
     wallGimmickType: 0

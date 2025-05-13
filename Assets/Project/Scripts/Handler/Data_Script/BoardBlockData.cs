@@ -4,8 +4,8 @@ using System.Collections.Generic;
 [System.Serializable]
 public class BoardBlockData : BlockBaseData
 {
-    public List<ColorType> colorType;
-    public List<int> dataType;
+    public ColorType colorType;
+    public int dataType;
 }
 
 public enum DestroyWallDirection

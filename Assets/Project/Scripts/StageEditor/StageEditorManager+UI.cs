@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,7 +63,7 @@ public partial class StageEditorManager //UI
         currentSelect.text = "Select : " + currentColor.ToString();
     }
 
-    public void OnClickSaveJson(JsonLoad load)
+    public void OnClickLoadJson(JsonLoad load)
     {
         StageJsonWrapper wrapper = JsonUtility.FromJson<StageJsonWrapper>(load.Json.text);
         StageJsonData stageJson = wrapper.Stage;
